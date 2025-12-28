@@ -7,7 +7,6 @@
 }
 
 :root {
-    
     --primary-color: #415167;
     --accent-color: #C7A17A;
     --dark-gray: #151D28;
@@ -25,8 +24,9 @@ body {
     line-height: 1.25; 
     color: var(--primary-color);
     background-color: #fff;
+    overflow-x: hidden;
+    width: 100%;
 }
-
 
 a {
     text-decoration: none; 
@@ -34,32 +34,31 @@ a {
 }
 
 img {
-    display: block;
     max-width: 100%;
     height: auto;
-    border: none; 
+    display: block;
 }
 
-.header__logo-link {
-    display: inline-block;
-    line-height: 0;
-    text-decoration: none;
-}
-
-h1, .header__title {
+h1, h2, .header__title, 
+.benefits__title, .catalog__title, .promo__title, .personalized__title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    font-size: 54px;
-    line-height: 70px;
     text-transform: uppercase;
 }
 
+h1, .header__title {
+    font-size: 54px;
+    line-height: 70px;
+    text-align: left;
+}
+
 h2, .benefits__title, .catalog__title, .promo__title, .personalized__title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
     font-size: 30px;
     line-height: 34px;
     margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    grid-column: 1 / -1;
 }
 
 h3, .benefits__subtitle, .catalog__subtitle, .promo__subtitle, .personalized__subtitle {
@@ -67,6 +66,9 @@ h3, .benefits__subtitle, .catalog__subtitle, .promo__subtitle, .personalized__su
     font-size: 20px;
     line-height: 24px;
     margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    grid-column: 1 / -1;
 }
 
 h4, .benefit-card__title, .product-card__title, .gift-set__title, .combo-card__title {
@@ -76,41 +78,21 @@ h4, .benefit-card__title, .product-card__title, .gift-set__title, .combo-card__t
     margin: 15px 0;
 }
 
-.benefit-card__text, .product-card__info, .combo-card__text {
+.benefit-card__text, .combo-card__text {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 1.6;
     margin-bottom: 20px;
+    flex-grow: 1;
 }
 
 .product-card__info {
     font-weight: 300;
     font-style: italic;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 20px;
 }
-
-.nav__list {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-.nav__link {
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 14px;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-}
-
-.nav__link:hover {
-    color: var(--accent-color);
-}
-
-.nav__link:focus {
-    outline: 2px solid var(--accent-color); 
-    outline-offset: 4px; 
-    border-radius: 6px; 
-}
-
 
 .button {
     font-family: 'Nunito', sans-serif;
@@ -123,6 +105,7 @@ h4, .benefit-card__title, .product-card__title, .gift-set__title, .combo-card__t
     text-transform: uppercase;
     transition: all 0.3s ease;
     display: inline-block;
+    text-align: center;
 }
 
 .button--primary {
@@ -149,21 +132,179 @@ h4, .benefit-card__title, .product-card__title, .gift-set__title, .combo-card__t
     transform: scale(0.98);
 }
 
-.header {
-    background-color: var(--bg-cream);
-    padding: 40px 0;
+.nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
+
+.nav__link {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 20px;
+    transition: color 0.3s ease;
+    color: var(--light-gray);
+}
+
+.nav__link:hover { color: var(--accent-color); }
+
+.header {
+    height: 100vh;
+    min-height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.header__logo-link {
+    position: absolute;
+    top: 40px;
+    left: 5%;
+    display: inline-block;
+    line-height: 0;
+    z-index: 15;
+}
+
+.header__title {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    max-width: 600px;
+    z-index: 5;
+}
+
+.header__title--accent {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 0 15px;
+}
+
+.header__aside {
+    position: absolute;
+    top: 0;
+    right: 0; 
+    width: 26%; 
+    height: 100%;
+    background-color: var(--primary-color);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    z-index: 10;
+}
+
+.side-panel__cart-link { margin-bottom: 60px; }
+.side-panel__cart-icon { width: 34px; height: auto; }
 
 .main section {
     padding: 80px 20px;
 }
 
-.benefit-card, .product-card, .combo-card {
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.benefit-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     margin-bottom: 40px;
 }
 
-.product-card:hover {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+.benefit-card__icon {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.promo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gift-set {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 40px;
+    background-color: var(--light-gray);
+    padding: 40px;
+}
+
+.gift-set__image {
+    width: 100%;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.gift-set__details, .gift-set__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: start;
+    margin-top: 30px;
+}
+
+.personalized {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.combo-card {
+    background-color: #fff;
+    border: 1px solid var(--light-gray);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.combo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.combo-card__actions {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.product-card__image {
+    margin: 0 auto 20px;
+}
+
+.benefits, .catalog, .promo, .personalized {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .footer {
@@ -178,3 +319,206 @@ h4, .benefit-card__title, .product-card__title, .gift-set__title, .combo-card__t
     margin: 0 auto;
     opacity: 0.8;
 }
+
+@media (min-width: 1024px) {
+    .header__logo-link {
+        top: 25px;
+        left: 40px;
+    }
+    
+    .header__title {
+        bottom: 8%;
+        max-width: 500px;
+        font-size: 44px;
+        line-height: 1.2;
+    }
+
+    .header__aside {
+        width: 300px;
+    }
+
+    .personalized {
+        max-width: 1100px;
+        padding: 0 20px;
+    }
+
+    .combo-card__actions {
+        flex-wrap: wrap; 
+        gap: 10px;
+    }
+
+    .combo-card__actions .button {
+        flex: 1 1 auto;
+        font-size: 13px;
+        padding: 10px 15px;
+    }
+}
+
+
+@media (max-width: 575px) {
+    .header {
+        min-height: 500px;
+        height: auto; 
+        flex-direction: row; 
+        justify-content: flex-start; 
+        align-items: flex-end; 
+    }
+    
+    .header__aside {
+        width: 50%;
+        padding: 30px 15px;
+    }
+    
+    .header__title {
+        font-size: 28px;
+        line-height: 38px;
+        max-width: 300px;
+        bottom: 15%;
+        left: 15px;
+        text-align: left;
+        position: absolute; 
+        right: auto;
+        transform: none;
+        padding: 0;
+        font-size: 28px; 
+    }
+    
+    .header__logo-link {
+        left: 15px;
+        position: absolute; 
+        top: 40px; 
+        text-align: left;
+        width: auto;
+        padding: 0;
+    }
+    
+    .benefits {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .personalized {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .gift-set {
+        padding: 20px;
+    }
+    
+    .nav__link {
+        font-size: 16px;
+    }
+    
+    .button {
+        padding: 10px 20px;
+        font-size: 14px;
+        width: auto; 
+    }
+    
+    h1, .header__title {
+        font-size: 26px !important;
+        line-height: 38px;
+        text-align: left !important;
+    }
+    
+    h2, .benefits__title, .catalog__title, .promo__title, .personalized__title {
+        font-size: 22px;
+        line-height: 26px;
+    }
+    
+    h4, .benefit-card__title, .product-card__title, .gift-set__title, .combo-card__title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    
+    .nav__list {
+        flex-direction: column; 
+        gap: 20px;
+    }
+    
+
+    .header__aside {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 770px) {
+    .benefits, 
+    .catalog, 
+    .promo, 
+    .personalized, 
+    .gift-set,
+    .gift-set__details, 
+    .gift-set__actions {
+        grid-template-columns: 1fr;
+    }
+
+    .header__aside {
+        position: static;
+        width: 100%;
+        padding: 40px 20px;
+        background-color: var(--primary-color);
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        gap: 30px; 
+    }
+
+    
+    .nav {
+        order: 1; 
+    }
+
+    .nav__list {
+        flex-direction: row; 
+        flex-wrap: wrap;     
+        justify-content: center; 
+        gap: 15px 25px;      
+    }
+
+    .side-panel__cart-link {
+        order: 2; 
+        margin-bottom: 0; 
+    }
+
+    .header {
+        height: auto;
+        min-height: auto;
+        flex-direction: column;
+    }
+
+    .header__logo-link {
+        position: static;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .header__title {
+        position: static;
+        max-width: 100%;
+        padding: 40px 20px;
+        text-align: center;
+        font-size: 32px;
+    }
+
+    .button {
+        width: 100%;
+    }
+    .combo-card__actions {
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+
+
+
