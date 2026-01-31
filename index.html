@@ -6,15 +6,23 @@
     <title>Рево-кофе</title>
     <link rel="icon" href="assets/icons/IC-2.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/mobile.css">
 </head>
 <body class="page">
     
     <header class="header">     
+        <div class="header__top-bar">
     <a class="header__logo-link" href="#"><img src="assets/icons/LOGO.png" alt="Логотип" class="header__logo-img">
     </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">
+            <span class="menu-toggle__line"></span>
+            <span class="menu-toggle__line"></span>
+            <span class="menu-toggle__line"></span>
+        </button>
+        </div>
     <img src="assets/img/banner.png" alt="Баннер с кофе на главной странице" class="header__banner">
          <h1 class="header__title">Ваш <span class="header__title--accent">индивидуальный</span> кофе</h1> 
-    <aside class="header__aside side-panel">
+    <aside class="header__aside side-panel" id="mainNav">
             <a class="side-panel__cart-link" href="#">
                 <img src="assets/icons/shopping-cart-4.png" alt="Корзина" class="side-panel__cart-icon">
             </a>
@@ -164,6 +172,7 @@
     <footer class="footer" id="footer">
         <p class="footer__text">Есть над чем задуматься: многие известные личности, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут ассоциативно распределены по&nbsp;отраслям.</p>
     </footer>
-    
+    <button class="scroll-top" id="scrollTop" aria-label="Вернуться в начало страницы">↑</button>
+    <script src="scripts/menu.js"></script>
 </body>
 </html>
